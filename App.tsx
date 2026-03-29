@@ -1,54 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate, useLocation } from 'react-router-dom';
-import Layout from './components/Layout';
-import AdminLayout from './components/AdminLayout';
+import Layout from './src/components/Layout';
+import AdminLayout from './src/components/AdminLayout';
 
 // User Views
-import Dashboard from './views/Dashboard';
-import Members from './views/Members';
-import Referrals from './views/Referrals';
-import Meetings from './views/Meetings';
-import Profile from './views/Profile';
-import NewReferral from './views/NewReferral';
-import ReferralStatus from './views/ReferralStatus';
-import Login from './views/Login';
-import Register from './views/Register';
-import ChapterSelection from './views/ChapterSelection';
-import { apiService } from './services/apiService';
-import LandingPage from './views/LandingPage';
-import ContactPage from './views/ContactPage';
-import PrivacyPolicyPage from './views/PrivacyPolicyPage';
-import TermsPage from './views/TermsPage';
-import AboutPage from './views/AboutPage';
-import FAQPage from './views/FAQPage';
-import Leaderboard from './views/Leaderboard';
-import Notifications from './views/Notifications';
-import PaymentPage from './views/PaymentPage';
+import Dashboard from './src/pages/Dashboard';
+import Members from './src/pages/Members';
+import Referrals from './src/pages/Referrals';
+import Meetings from './src/pages/Meetings';
+import Profile from './src/pages/Profile';
+import NewReferral from './src/pages/NewReferral';
+import ReferralStatus from './src/pages/ReferralStatus';
+import Login from './src/pages/Login';
+import Register from './src/pages/Register';
+import ChapterSelection from './src/pages/ChapterSelection';
+import { apiService } from './src/services/apiService';
+import LandingPage from './src/pages/LandingPage';
+import ContactPage from './src/pages/ContactPage';
+import PrivacyPolicyPage from './src/pages/PrivacyPolicyPage';
+import TermsPage from './src/pages/TermsPage';
+import AboutPage from './src/pages/AboutPage';
+import FAQPage from './src/pages/FAQPage';
+import Leaderboard from './src/pages/Leaderboard';
+import Notifications from './src/pages/Notifications';
+import PaymentPage from './src/pages/PaymentPage';
 
 // Admin Views
-import AdminDashboard from './views/admin/AdminDashboard';
-import AdminUsers from './views/admin/AdminUsers';
-import AdminChapters from './views/admin/AdminChapters';
-import AdminReferrals from './views/admin/AdminReferrals';
-import AdminMeetings from './views/admin/AdminMeetings';
-import AdminReports from './views/admin/AdminReports';
-import AdminNotifications from './views/admin/AdminNotifications';
-import AdminSettings from './views/admin/AdminSettings';
-import AdminSupport from './views/admin/AdminSupport';
-import AdminPayments from './views/admin/AdminPayments';
-import ReferralProtocol from './views/admin/ReferralProtocol';
-import ReferralReport from './views/admin/ReferralReport';
+import AdminDashboard from './src/pages/admin/AdminDashboard';
+import AdminUsers from './src/pages/admin/AdminUsers';
+import AdminChapters from './src/pages/admin/AdminChapters';
+import AdminReferrals from './src/pages/admin/AdminReferrals';
+import AdminMeetings from './src/pages/admin/AdminMeetings';
+import AdminReports from './src/pages/admin/AdminReports';
+import AdminNotifications from './src/pages/admin/AdminNotifications';
+import AdminSettings from './src/pages/admin/AdminSettings';
+import AdminSupport from './src/pages/admin/AdminSupport';
+import AdminPayments from './src/pages/admin/AdminPayments';
+import ReferralProtocol from './src/pages/admin/ReferralProtocol';
+import ReferralReport from './src/pages/admin/ReferralReport';
 
 // Chapter Lead Views
-import ChapterLeadLayout from './components/ChapterLeadLayout';
-import ChapterLeadDashboard from './views/chapter-lead/ChapterLeadDashboard';
-import ChapterLeadApprovals from './views/chapter-lead/ChapterLeadApprovals';
-import ChapterLeadMembers from './views/chapter-lead/ChapterLeadMembers';
-import ChapterLeadMeetings from './views/chapter-lead/ChapterLeadMeetings';
-import ChapterLeadReports from './views/chapter-lead/ChapterLeadReports';
+import ChapterLeadLayout from './src/components/ChapterLeadLayout';
+import ChapterLeadDashboard from './src/pages/chapter-lead/ChapterLeadDashboard';
+import ChapterLeadApprovals from './src/pages/chapter-lead/ChapterLeadApprovals';
+import ChapterLeadMembers from './src/pages/chapter-lead/ChapterLeadMembers';
+import ChapterLeadMeetings from './src/pages/chapter-lead/ChapterLeadMeetings';
+import ChapterLeadReports from './src/pages/chapter-lead/ChapterLeadReports';
 
-import { useActiveTab } from './hooks/useActiveTab';
-import { getLocalStorage, setLocalStorage, clearLocalStorage } from './utils/storageHelper';
+import { useActiveTab } from './src/hooks/useActiveTab';
+import { getLocalStorage, setLocalStorage, clearLocalStorage } from './src/utils/storageHelper';
 
 // ── Admin Application (Isolated API) ──────────────────────────────────────
 interface AdminAppProps {
