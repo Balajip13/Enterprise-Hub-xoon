@@ -15,7 +15,6 @@ import {
   Mail
 } from 'lucide-react';
 import { apiService } from '../services/apiService';
-import { getSmartMatching } from '../services/geminiService';
 
 interface NewReferralProps {
   onSuccess: () => void;
@@ -25,8 +24,6 @@ const NewReferral: React.FC<NewReferralProps> = ({ onSuccess }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [aiMatching, setAiMatching] = useState(false);
-  const [aiSuggestion, setAiSuggestion] = useState<{matchedId: string, reason: string} | null>(null);
   
   const [members, setMembers] = useState<any[]>([]);
   const [fetchingMembers, setFetchingMembers] = useState(false);
@@ -78,30 +75,7 @@ const NewReferral: React.FC<NewReferralProps> = ({ onSuccess }) => {
   const estimatedValue = parseFloat(formData.value) || 0;
   const potentialCommission = estimatedValue * 0.05;
 
-  // AI Matching Logic
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(async () => {
-      if (formData.requirement.length > 15 && !formData.toMemberId && members.length > 0) {
-        setAiMatching(true);
-        try {
-          const match = await getSmartMatching(formData.requirement, members.map(m => ({
-            id: m._id,
-            name: m.name,
-            category: m.category || 'General'
-          })));
-          if (match) {
-            setAiSuggestion(match);
-          }
-        } catch (err) {
-          console.error('AI Matching failed:', err);
-        } finally {
-          setAiMatching(false);
-        }
-      }
-    }, 2000);
 
-    return () => clearTimeout(delayDebounceFn);
-  }, [formData.requirement, formData.toMemberId, members]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -203,7 +177,6 @@ const NewReferral: React.FC<NewReferralProps> = ({ onSuccess }) => {
                   type="button"
                   onClick={() => {
                     setFormData(prev => ({...prev, toMemberId: ''}));
-                    setAiSuggestion(null);
                   }}
                   className="p-1.5 hover:bg-white rounded-lg transition-all text-blue-600"
                 >
@@ -255,47 +228,18 @@ const NewReferral: React.FC<NewReferralProps> = ({ onSuccess }) => {
               </div>
             )}
 
-            {aiSuggestion && !formData.toMemberId && (
-              <div className="bg-indigo-50 border border-indigo-100 p-4 rounded-2xl animate-in slide-in-from-right-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <Zap className="w-3 h-3 text-indigo-600 fill-indigo-600" />
-                  <span className="text-[9px] font-black text-indigo-600 uppercase tracking-widest">AI Matching Suggestion</span>
-                </div>
-                <p className="text-[11px] text-slate-600 font-medium mb-3">
-                  Recommended: <span className="font-bold text-slate-900">{members.find(m => m._id === aiSuggestion.matchedId)?.name}</span>
-                </p>
-                <button 
-                  type="button"
-                  onClick={() => {
-                    setFormData(prev => ({...prev, toMemberId: aiSuggestion.matchedId}));
-                    setAiSuggestion(null);
-                  }}
-                  className="bg-indigo-600 text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-indigo-700 transition-all flex items-center gap-2"
-                >
-                  Select Connection
-                  <ArrowRight className="w-3 h-3" />
-                </button>
-              </div>
-            )}
+
           </div>
         </section>
 
         {/* Section 2: Client Requirement */}
         <section className="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-50 pb-3">
-             <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                <div className="w-7 h-7 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center">
                   <FileText className="w-4 h-4" />
                </div>
                <h3 className="text-sm font-black text-slate-800 uppercase tracking-wider">Client Requirement</h3>
-             </div>
-             {aiMatching && (
-               <span className="text-[9px] font-black text-blue-500 flex items-center gap-1.5">
-                 <Loader2 className="w-3 h-3 animate-spin" />
-                 AI ANALYZING...
-               </span>
-             )}
-          </div>
+              </div>
           
           <div className="relative">
             <textarea 
