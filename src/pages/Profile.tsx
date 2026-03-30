@@ -323,7 +323,7 @@ const Profile: React.FC<ProfileProps> = ({ onSignOut }) => {
 
     try {
       setPasswordLoading(true);
-      const response = await apiFetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/auth/update-password`, {
+      const response = await apiFetch(`${import.meta.env.VITE_API_URL}/auth/update-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

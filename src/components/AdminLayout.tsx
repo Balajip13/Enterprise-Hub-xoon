@@ -45,7 +45,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeTab, onTabCha
   React.useEffect(() => {
     const fetchSupportCount = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        const apiUrl = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem('token');
         const response = await apiFetch(`${apiUrl}/admin/support`);
         if (!response.ok) return;

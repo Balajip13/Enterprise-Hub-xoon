@@ -22,7 +22,7 @@ interface ChapterSelectionProps {
   onSignOut: () => void;
 }
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_URL;
 
 const ChapterSelection: React.FC<ChapterSelectionProps> = ({ user, onOnboardingComplete, onSignOut }) => {
   const navigate = useNavigate();
