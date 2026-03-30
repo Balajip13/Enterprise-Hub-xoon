@@ -1,6 +1,8 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || '';
 
-
+if (!API_URL) {
+  console.error('[CRITICAL] VITE_API_URL is missing! API requests will fail.');
+}
 export const apiFetch = async (url: string, options: RequestInit = {}) => {
   const token = localStorage.getItem('token');
   console.log(`[apiFetch] Requesting: ${url}`, { hasToken: !!token });
