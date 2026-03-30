@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { apiFetch } from '../../services/apiService';
 
 interface Props {
   children?: ReactNode;
@@ -57,7 +58,7 @@ class ErrorBoundary extends React.Component<Props, State> {
       );
     }
 
-    return (this as any).props.children;
+    return this.props.children;
   }
 }
 
