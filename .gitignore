@@ -1,28 +1,28 @@
-# ===========================
 # Dependencies
-# ===========================
 node_modules/
+client/node_modules/
+server/node_modules/
 
-# ===========================
-# Environment Variables
-# ===========================
+# Build outputs
+dist/
+dist-ssr/
+build/
+client/dist/
+server/dist/
+
+# Environment files
 .env
 .env.local
 .env.development
 .env.production
 .env.staging
-*.env
+.env.*
+!.env.example
+client/.env
+client/.env.local
+server/.env
 
-# ===========================
-# Build Folders
-# ===========================
-dist/
-dist-ssr/
-build/
-
-# ===========================
 # Logs
-# ===========================
 logs/
 *.log
 npm-debug.log*
@@ -31,16 +31,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# ===========================
 # OS Files
-# ===========================
 .DS_Store
 Thumbs.db
 Desktop.ini
 
-# ===========================
 # IDE / Editor Files
-# ===========================
 .vscode/
 !.vscode/extensions.json
 .idea/
@@ -50,27 +46,21 @@ Desktop.ini
 *.sln
 *.sw?
 
-# ===========================
 # Cache
-# ===========================
 .cache/
 .parcel-cache/
 .eslintcache
 .stylelintcache
 
-# ===========================
 # TypeScript
-# ===========================
 *.tsbuildinfo
 
-# ===========================
-# Testing / Coverage
-# ===========================
+# Testing
 coverage/
 .nyc_output/
 
-# ===========================
 # Misc
-# ===========================
 tmp/
 temp/
+client/tmp/
+server/tmp/

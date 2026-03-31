@@ -1,16 +1,12 @@
 {
-  "name": "xoon---business-referral-network",
+  "name": "client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "cd server && npm install && npm run build",
-    "start": "cd server && npm start",
+    "build": "vite build",
     "preview": "vite preview"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   },
   "dependencies": {
     "jspdf": "^4.2.0",

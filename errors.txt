@@ -1,2 +1,0 @@
-src/components/ErrorBoundary.tsx(60,17): error TS2339: Property 'props' does not exist on type 'ErrorBoundary'.
-src/pages/chapter-lead/ChapterLeadMembers.tsx(56,30): error TS2304: Cannot find name 'apiFetch'.
