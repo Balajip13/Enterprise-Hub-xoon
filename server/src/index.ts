@@ -23,6 +23,10 @@ import { authenticateToken, authorize } from './middleware/auth';
 dotenv.config();
 
 const app = express();
+
+// Trust proxy for Render/load balancers (required for express-rate-limit)
+app.set("trust proxy", 1);
+
 const PORT = process.env.PORT || 5000;
 
 // Middleware Setup
